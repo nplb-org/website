@@ -1349,3 +1349,10 @@ a.footer-pill:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,
   .nav-list { top: 100%; }
   .section-header h2 { font-size: 1.5rem; }
 }
+
+/* --- Survey embed --- */
+.survey-embed { max-width: 680px; margin: 0 auto; }
+.survey-embed iframe { width: 100%; border: 0; display: block; }
+@media (max-width: 768px) {
+  .survey-embed { margin: 0 -8px; }
+}
