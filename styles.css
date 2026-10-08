@@ -1402,6 +1402,7 @@ a.footer-pill:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,
   .subscribe-form { flex-direction: column; }
   .catalog-grid { grid-template-columns: 1fr; }
   .media-grid { grid-template-columns: 1fr; }
+  .resource-grid { grid-template-columns: 1fr; }
   .priorities-list { grid-template-columns: 1fr; }
 
   .footer-grid { grid-template-columns: 1fr; gap: var(--space-5); }
@@ -1417,7 +1418,8 @@ a.footer-pill:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,
 }
 
 @media (max-width: 480px) {
-  .header-photo { width: 48px; height: 48px; }
+  .header-photo { display: none; }
+  .header-titles { display: none; }
   .header-titles h1 { font-size: 1.1rem; }
   .header-titles .header-sub { font-size: 0.75rem; }
   .nav-donate-btn { padding: 6px 12px; font-size: 0.75rem; }
