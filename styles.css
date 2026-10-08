@@ -583,7 +583,14 @@ a.header-titles:hover h1 { color: var(--primary-light); }
   margin-bottom: 8px;
 }
 
-.card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+.card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px; }
+
+/* Keep doc-link / coming-soon footers pinned to the card bottom so cards
+   in the same row stay visually aligned even when text lengths differ. */
+.card { display: flex; flex-direction: column; }
+.card .download-item,
+.card .coming-soon { margin-top: auto; }
+.card .coming-soon { align-self: flex-start; }
 
 /* --- Leadership --- */
 .leadership-grid {
@@ -1054,6 +1061,13 @@ a.header-titles:hover h1 { color: var(--primary-light); }
   gap: 12px;
 }
 
+/* Single doc link that follows a larger block (e.g. numbered steps):
+   center it instead of stretching full width. */
+.download-list-centered {
+  max-width: 640px;
+  margin: 40px auto 0;
+}
+
 .download-item {
   display: flex;
   align-items: center;
@@ -1088,6 +1102,30 @@ a.header-titles:hover h1 { color: var(--primary-light); }
 .download-info span { display: block; }
 .download-info .name { font-weight: 600; color: var(--primary); font-size: 0.9rem; }
 .download-info .meta { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+
+/* --- Healthcare story cards --- */
+.story-grid { display: grid; gap: 16px; }
+.story-card {
+  display: flex;
+  gap: 16px;
+  padding: 20px 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.story-card:hover { border-color: var(--primary-light); box-shadow: var(--shadow); }
+.story-mark {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: #2a9d8f;
+  flex-shrink: 0;
+}
+.story-body h3 { font-size: 1.05rem; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
+.story-body p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; font-style: italic; }
+.story-link { display: inline-block; margin-top: 10px; font-size: 0.85rem; font-weight: 600; color: var(--primary-light); }
 
 /* --- Catalog Categories --- */
 .catalog-grid {
