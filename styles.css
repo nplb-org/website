@@ -92,6 +92,15 @@ body {
   border: 2px solid var(--border);
 }
 
+.header-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+  background: #fff;
+}
+
 .header-titles {
   flex: 1;
   min-width: 0;
@@ -1292,6 +1301,7 @@ a.footer-pill:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,
 
   .header-masthead { gap: 12px; }
   .header-photo { width: 64px; height: 64px; }
+  .header-logo { width: 46px; height: 46px; border-radius: 12px; }
   .header-titles h1 { font-size: 1.2rem; }
   .header-titles .header-tagline { display: none; }
 
