@@ -92,13 +92,26 @@ body {
   border: 2px solid var(--border);
 }
 
-.header-logo {
-  width: 60px;
-  height: 60px;
-  border-radius: 16px;
-  object-fit: contain;
+.header-brand {
+  display: inline-flex;
   flex-shrink: 0;
-  background: #fff;
+}
+
+.header-logo-wide {
+  height: 56px;
+  width: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .header-titles {
@@ -1301,7 +1314,7 @@ a.footer-pill:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,
 
   .header-masthead { gap: 12px; }
   .header-photo { width: 64px; height: 64px; }
-  .header-logo { width: 46px; height: 46px; border-radius: 12px; }
+  .header-logo-wide { height: 40px; }
   .header-titles h1 { font-size: 1.2rem; }
   .header-titles .header-tagline { display: none; }
 
