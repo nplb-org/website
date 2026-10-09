@@ -1435,3 +1435,13 @@ a.footer-pill:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,
 @media (max-width: 768px) {
   .survey-embed { margin: 0 -8px; }
 }
+
+/* Fund sub-header bar (homepage only) */
+.fund-subheader {
+  background: var(--primary-dark);
+  color: #ffffff;
+  text-align: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  padding: 10px 16px;
+}
