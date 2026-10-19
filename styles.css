@@ -771,11 +771,31 @@ a.header-titles:hover h1 { color: var(--primary-light); }
 
 .subscribe-form {
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.subscribe-form input {
-  flex: 1;
+.subscribe-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.subscribe-field[hidden] {
+  display: none;
+}
+
+.subscribe-field label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.02em;
+}
+
+.subscribe-form input,
+.subscribe-form select {
+  width: 100%;
   padding: 10px 14px;
   border: 1px solid rgba(255,255,255,0.25);
   border-radius: var(--radius-sm);
@@ -783,9 +803,31 @@ a.header-titles:hover h1 { color: var(--primary-light); }
   color: #fff;
   font-size: 0.9rem;
   font-family: var(--font);
+  box-sizing: border-box;
 }
 
 .subscribe-form input::placeholder { color: rgba(255,255,255,0.45); }
+
+.subscribe-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.subscribe-form select option {
+  color: #1a1a1a;
+  background: #fff;
+}
+
+.subscribe-form select:invalid,
+.subscribe-form select option[value=""] {
+  color: rgba(255,255,255,0.45);
+}
 
 .subscribe-form button {
   padding: 10px 20px;
@@ -804,6 +846,22 @@ a.header-titles:hover h1 { color: var(--primary-light); }
   margin-top: 10px;
   font-size: 0.75rem;
   color: rgba(255,255,255,0.45);
+}
+
+.subscribe-error {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #ffb4a8;
+}
+
+.subscribe-success {
+  padding: 12px 0 4px;
+}
+
+.subscribe-success p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.9);
 }
 
 .tax-receipt-note {
@@ -1399,7 +1457,6 @@ a.footer-pill:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,
 
   .action-grid { grid-template-columns: 1fr; }
   .tier-grid { grid-template-columns: 1fr; }
-  .subscribe-form { flex-direction: column; }
   .catalog-grid { grid-template-columns: 1fr; }
   .media-grid { grid-template-columns: 1fr; }
   .resource-grid { grid-template-columns: 1fr; }
