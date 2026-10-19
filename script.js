@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (nlForm) {
     var CI_ROUTE_ID = '6YLePZDwu3PvD3vJNA0QqDtrdrOCb3QcJzdM1ICeFZK3CVbJ7aKnv0wFKrh32yQnkeeWqgDcSaQDOy2Skk3yMg~~';
     var CI_BASE = 'https://app.cyberimpact.com';
-    var CI_CANADA_ID = '118';
+    var CI_CANADA_ID = 'CA';
     var ciTokenKey = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     var ciCsrfToken = null;
 
@@ -91,18 +91,12 @@ document.addEventListener('DOMContentLoaded', function () {
     nlCountry.addEventListener('change', nlUpdateProvinceVisibility);
     nlProvider.addEventListener('change', nlUpdateProvinceVisibility);
 
-    // Fetch form config: csrf token + country list
+    // Fetch the CSRF token needed for submission.
+    // (Country options are hardcoded in the HTML.)
     fetch(CI_BASE + '/form/api/fetch/' + CI_ROUTE_ID + '?tokenKey=' + ciTokenKey, { method: 'GET' })
       .then(function (res) { return res.json(); })
       .then(function (data) {
         ciCsrfToken = data.csrfToken;
-        var countries = data.countries || [];
-        countries.forEach(function (c) {
-          var opt = document.createElement('option');
-          opt.value = String(c.iId_country);
-          opt.textContent = c.sCountry;
-          nlCountry.appendChild(opt);
-        });
       })
       .catch(function () {
         nlShowError('The signup form could not be loaded. Please try again later.');

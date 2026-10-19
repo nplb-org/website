@@ -766,6 +766,10 @@ a.header-titles:hover h1 { color: var(--primary-light); }
   text-align: left;
 }
 
+.subscribe-field[hidden] {
+  display: none;
+}
+
 .subscribe-field label {
   font-size: 0.75rem;
   font-weight: 600;
