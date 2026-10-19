@@ -54,4 +54,119 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // ─── Newsletter signup (CyberImpact) ───
+  var nlForm = document.getElementById('newsletterForm');
+  if (nlForm) {
+    var CI_ROUTE_ID = '6YLePZDwu3PvD3vJNA0QqDtrdrOCb3QcJzdM1ICeFZK3CVbJ7aKnv0wFKrh32yQnkeeWqgDcSaQDOy2Skk3yMg~~';
+    var CI_BASE = 'https://app.cyberimpact.com';
+    var CI_CANADA_ID = '118';
+    var ciTokenKey = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    var ciCsrfToken = null;
+
+    var nlName = document.getElementById('nl-name');
+    var nlEmail = document.getElementById('nl-email');
+    var nlProvider = document.getElementById('nl-provider');
+    var nlCountry = document.getElementById('nl-country');
+    var nlProvinceWrap = document.getElementById('nl-province-wrap');
+    var nlProvince = document.getElementById('nl-province');
+    var nlError = document.getElementById('nl-error');
+    var nlSuccess = document.getElementById('nl-success');
+    var nlSubmit = document.getElementById('nl-submit');
+
+    function nlShowError(msg) {
+      nlError.textContent = msg;
+      nlError.hidden = false;
+    }
+    function nlClearError() {
+      nlError.textContent = '';
+      nlError.hidden = true;
+    }
+
+    // Show Province only for Canadian healthcare providers
+    function nlUpdateProvinceVisibility() {
+      var show = nlCountry.value === CI_CANADA_ID && nlProvider.value === 'male';
+      nlProvinceWrap.hidden = !show;
+      if (!show) { nlProvince.value = ''; }
+    }
+    nlCountry.addEventListener('change', nlUpdateProvinceVisibility);
+    nlProvider.addEventListener('change', nlUpdateProvinceVisibility);
+
+    // Fetch form config: csrf token + country list
+    fetch(CI_BASE + '/form/api/fetch/' + CI_ROUTE_ID + '?tokenKey=' + ciTokenKey, { method: 'GET' })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        ciCsrfToken = data.csrfToken;
+        var countries = data.countries || [];
+        countries.forEach(function (c) {
+          var opt = document.createElement('option');
+          opt.value = String(c.iId_country);
+          opt.textContent = c.sCountry;
+          nlCountry.appendChild(opt);
+        });
+      })
+      .catch(function () {
+        nlShowError('The signup form could not be loaded. Please try again later.');
+      });
+
+    nlForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      nlClearError();
+
+      var name = nlName.value.trim();
+      var email = nlEmail.value.trim();
+      var provider = nlProvider.value;
+      var country = nlCountry.value;
+      var provinceVisible = !nlProvinceWrap.hidden;
+      var province = nlProvince.value.trim();
+
+      if (!name) { nlShowError('Please enter your name.'); nlName.focus(); return; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { nlShowError('Please enter a valid email address.'); nlEmail.focus(); return; }
+      if (!provider) { nlShowError('Please tell us whether you are a healthcare provider.'); nlProvider.focus(); return; }
+      if (!country) { nlShowError('Please select your country.'); nlCountry.focus(); return; }
+      if (!ciCsrfToken) { nlShowError('The signup form is still loading. Please try again in a moment.'); return; }
+
+      nlSubmit.disabled = true;
+      nlSubmit.textContent = 'Subscribing…';
+
+      var payload = {
+        firstname: name,
+        email: email,
+        gender: provider,
+        country: country,
+        // Province defaults to "N/A" when hidden or left blank
+        company: (provinceVisible && province) ? province : 'N/A',
+        csrfToken: ciCsrfToken,
+        tokenKey: ciTokenKey,
+        ci_confirm_url: ''
+      };
+
+      fetch(CI_BASE + '/form/api/optin/' + CI_ROUTE_ID, {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data && data.success) {
+            nlForm.hidden = true;
+            nlSuccess.hidden = false;
+          } else if (data && data.errors) {
+            var firstKey = Object.keys(data.errors)[0];
+            nlShowError(data.errors[firstKey] || 'Something went wrong. Please try again.');
+          } else {
+            nlShowError('Something went wrong. Please try again.');
+          }
+        })
+        .catch(function () {
+          nlShowError('Something went wrong. Please try again.');
+        })
+        .finally(function () {
+          nlSubmit.disabled = false;
+          nlSubmit.textContent = 'Subscribe';
+        });
+    });
+  }
+
 });

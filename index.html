@@ -212,11 +212,39 @@
 
           <div class="subscribe-box">
             <p>Subscribe for grant announcements and system improvement resources.</p>
-            <!-- TODO: replace action URL with real Mailchimp form action when account is created -->
-            <form class="subscribe-form" action="https://REPLACE-WITH-MAILCHIMP-URL" method="post" target="_blank">
-              <input type="email" name="EMAIL" placeholder="Your email address" required>
-              <button type="submit">Subscribe</button>
+            <form class="subscribe-form" id="newsletterForm" novalidate>
+              <div class="subscribe-field">
+                <label for="nl-name">Name</label>
+                <input type="text" id="nl-name" name="firstname" placeholder="Your name" required autocomplete="given-name">
+              </div>
+              <div class="subscribe-field">
+                <label for="nl-email">Email</label>
+                <input type="email" id="nl-email" name="email" placeholder="Your email address" required autocomplete="email">
+              </div>
+              <div class="subscribe-field">
+                <label for="nl-provider">Are you a healthcare provider?</label>
+                <select id="nl-provider" name="gender" required>
+                  <option value="">Select&hellip;</option>
+                  <option value="male">Yes</option>
+                  <option value="female">No</option>
+                </select>
+              </div>
+              <div class="subscribe-field">
+                <label for="nl-country">Country</label>
+                <select id="nl-country" name="country" required>
+                  <option value="">Select&hellip;</option>
+                </select>
+              </div>
+              <div class="subscribe-field" id="nl-province-wrap" hidden>
+                <label for="nl-province">Province</label>
+                <input type="text" id="nl-province" name="company" placeholder="Your province" autocomplete="address-level1">
+              </div>
+              <p class="subscribe-error" id="nl-error" hidden></p>
+              <button type="submit" id="nl-submit">Subscribe</button>
             </form>
+            <div class="subscribe-success" id="nl-success" hidden>
+              <p><strong>Thank you!</strong> Check your email to confirm your subscription.</p>
+            </div>
             <span class="subscribe-note">No spam. Quarterly updates only. Unsubscribe anytime.</span>
           </div>
         </div>
