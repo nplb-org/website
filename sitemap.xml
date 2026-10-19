@@ -37,12 +37,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nplb.ca/podcast.html</loc>
-    <lastmod>2026-10-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://nplb.ca/message.html</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
