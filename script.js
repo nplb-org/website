@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (nlForm) {
     var CI_ROUTE_ID = '6YLePZDwu3PvD3vJNA0QqDtrdrOCb3QcJzdM1ICeFZK3CVbJ7aKnv0wFKrh32yQnkeeWqgDcSaQDOy2Skk3yMg~~';
     var CI_BASE = 'https://app.cyberimpact.com';
-    var CI_CANADA_ID = 'CA';
+    var CI_CANADA_ID = '118';
     var ciTokenKey = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     var ciCsrfToken = null;
 
