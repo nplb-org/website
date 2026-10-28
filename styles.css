@@ -985,6 +985,10 @@ a.header-titles:hover h1 { color: var(--primary-light); }
 .breadcrumb a { color: var(--primary-light); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
 
+.hero-split { display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+.hero-survey { flex: 0 0 320px; text-align: center; }
+.hero-survey p { font-size: 0.95rem; margin-top: 12px; }
+
 /* --- Long-form / Typeset Content --- */
 .typeset {
   max-width: 720px;
@@ -1468,6 +1472,9 @@ a.footer-pill:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,
 
   .page-hero h2 { font-size: 1.6rem; }
   .page-hero { padding: 40px 0 32px; }
+
+  .hero-split { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .hero-survey { flex: none; text-align: left; }
 
   .support-section { padding: 40px 24px; }
 
