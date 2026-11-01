@@ -1368,6 +1368,39 @@ a.header-titles:hover h1 { color: var(--primary-light); }
 
 .press-item-placeholder h4 { color: var(--text-muted); }
 
+/* --- Bulletin board --- */
+.bulletin-post {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.bulletin-date {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.bulletin-post h3 {
+  margin-bottom: 12px;
+}
+
+.bulletin-image {
+  margin: 24px auto;
+  max-width: 640px;
+}
+
+.bulletin-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.bulletin-post .download-list {
+  margin-top: 24px;
+}
+
 /* --- Footer --- */
 .footer {
   background: var(--primary-dark);
