@@ -1386,7 +1386,7 @@ a.header-titles:hover h1 { color: var(--primary-light); }
 
 .bulletin-image {
   margin: 24px auto;
-  max-width: 640px;
+  max-width: 480px;
 }
 
 .bulletin-image img {
@@ -1399,6 +1399,10 @@ a.header-titles:hover h1 { color: var(--primary-light); }
 
 .bulletin-post .download-list {
   margin-top: 24px;
+}
+
+@media (max-width: 480px) {
+  .bulletin-image { max-width: 260px; }
 }
 
 /* --- Footer --- */
